@@ -275,7 +275,7 @@ const nextDvd = () => {
 
   dvdW = dvd.clientWidth
   dvdH = dvd.clientHeight
-  console.log(`setting ${dvdSet[i].src}`)
+  // console.log(`setting ${dvdSet[i].src}`)
 }
 
 const animate = (currentTime) => {
