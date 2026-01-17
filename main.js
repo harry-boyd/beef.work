@@ -240,7 +240,7 @@ const dvdUrls = [
   'images/shiba.png',
   'images/digger.png',
   'images/wash.png',
-  'images/ai-hitsquad.gif'
+  'images/ai_hitsquad.gif'
 ]
 
 let dvdSet = []

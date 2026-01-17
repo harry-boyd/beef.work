@@ -3,17 +3,17 @@
 
 @font-face {
     font-family: 'Tobias';
-    src: url(fonts/tobiastrial-semibold.otf);
+    src: url(fonts/TobiasTRIAL-SemiBold.otf);
   }
   
   @font-face {
     font-family: 'Neue Haas';
-    src: url(fonts/nhaasgroteskdspro-75bd.ttf);
+    src: url(fonts/NHaasGroteskDSPro-75Bd.ttf);
   }
   
   @font-face {
     font-family: 'CS Mono';
-    src: url(fonts/centuryschoolbookbt-monospace.ttf);
+    src: url(fonts/CenturySchoolbookBT-Monospace.ttf);
   }
   
   /* ———————————————————————————————————————————————————————————————————————————————————————————————————— */
