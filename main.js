@@ -84,7 +84,7 @@ const setTime = i => {
   let timezone = timeTags[i].dataset.timezone
   let now = luxon.DateTime.now().setZone(timezone)
 
-  let h = now.toFormat('hh')
+  let h = now.toFormat('HH')
   let m = now.toFormat('mm')
 
   return `${h}:${m}`
