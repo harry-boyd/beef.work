@@ -240,7 +240,8 @@ const dvdUrls = [
   'images/shiba.png',
   'images/digger.png',
   'images/wash.png',
-  'images/ai_hitsquad.gif'
+  'images/ai_hitsquad.gif',
+  'meat.gif'
 ]
 
 let dvdSet = []
@@ -268,14 +269,17 @@ const setDimensions = () => {
   screenH = document.body.clientHeight
 }
 
-const nextDvd = () => {
+const nextDvd = (callback) => {
   i += 1
   if (i >= dvdSet.length) { i = 0 }
+  
+  dvd.onload = () => {
+    dvdW = dvd.clientWidth
+    dvdH = dvd.clientHeight
+    if (callback) callback()  // Call the callback after dimensions update
+  }
+  
   dvd.src = dvdSet[i].src
-
-  dvdW = dvd.clientWidth
-  dvdH = dvd.clientHeight
-  // console.log(`setting ${dvdSet[i].src}`)
 }
 
 const animate = (currentTime) => {
@@ -290,27 +294,31 @@ const animate = (currentTime) => {
   // Check vertical bounds - only trigger if moving in that direction
   if (y + dvdH >= screenH && dirY > 0) {
     dirY = -1
-    nextDvd()
-    y = screenH - dvdH
-    twitchIntro()
+    nextDvd(() => {
+      y = screenH - dvdH  // Clamp after dimensions update
+      twitchIntro()
+    })
   } else if (y < 0 && dirY < 0) {
     dirY = 1
-    nextDvd()
-    y = 0
-    twitchIntro()
+    nextDvd(() => {
+      y = 0
+      twitchIntro()
+    })
   }
   
   // Check horizontal bounds - only trigger if moving in that direction
   if (x + dvdW >= screenW && dirX > 0) {
     dirX = -1
-    nextDvd()
-    x = screenW - dvdW
-    twitchIntro()
+    nextDvd(() => {
+      x = screenW - dvdW  // Clamp after dimensions update
+      twitchIntro()
+    })
   } else if (x < 0 && dirX < 0) {
     dirX = 1
-    nextDvd()
-    x = 0
-    twitchIntro()
+    nextDvd(() => {
+      x = 0
+      twitchIntro()
+    })
   }
 
   x += dirX * movement
