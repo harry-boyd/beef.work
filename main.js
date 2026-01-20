@@ -236,12 +236,12 @@ setupTwitch()
 
 const dvd = document.querySelector('#dvd')
 const dvdUrls = [
-  'images/surf.png',
-  'images/shiba.png',
-  'images/digger.png',
-  'images/wash.png',
-  'images/ai_hitsquad.gif',
-  'meat.gif'
+  'surf.png',
+  'shiba.png',
+  'meat.gif',
+  'digger.png',
+  'wash.png',
+  'ai_hitsquad.gif'
 ]
 
 let dvdSet = []
@@ -257,7 +257,7 @@ let lastTime = 0
 const preloadDvds = () => {
   for (let i = 0; i < dvdUrls.length; i++) {
     const img = new Image()
-    img.src = dvdUrls[i]
+    img.src = `images/${dvdUrls[i]}`
     dvdSet.push(img) // Store the images
   }
 }
