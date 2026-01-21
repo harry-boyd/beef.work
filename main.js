@@ -269,6 +269,23 @@ const setDimensions = () => {
   screenH = document.body.clientHeight
 }
 
+const resetDvd = () => {
+  x = Math.random() * (screenW - dvdW)
+  y = Math.random() * (screenH - dvdH)
+  dirX = Math.random() < 0.5 ? -1 : 1
+  dirY = Math.random() < 0.5 ? -1 : 1
+  dvd.style.left = x + 'px'
+  dvd.style.top = y + 'px'
+}
+
+const checkBounds = () => {
+  // Check if DVD is out of bounds
+  if (x < 0 || y < 0 || x + dvdW > screenW || y + dvdH > screenH) {
+    console.log('DVD out of bounds, resetting...')
+    resetDvd()
+  }
+}
+
 const nextDvd = (callback) => {
   i += 1
   if (i >= dvdSet.length) { i = 0 }
@@ -285,8 +302,13 @@ const nextDvd = (callback) => {
 const animate = (currentTime) => {
 
   // Calculate delta time in seconds
-  const deltaTime = (currentTime - lastTime) / 1000
+  let deltaTime = (currentTime - lastTime) / 1000
   lastTime = currentTime
+
+  // Cap deltaTime to prevent huge jumps when tab is inactive
+  if (deltaTime > 0.1) {  // Max 100ms (0.1 seconds)
+    deltaTime = 0.1
+  }
 
   // Calculate movement based on time, not frames
   const movement = speed * deltaTime
@@ -329,6 +351,16 @@ const animate = (currentTime) => {
 
   window.requestAnimationFrame(animate)
 }
+
+// Listen for tab visibility changes
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    // Tab just became visible
+    setDimensions()  // Update viewport dimensions in case window was resized
+    checkBounds()    // Check and reset if out of bounds
+    lastTime = performance.now()  // Reset time to prevent huge deltaTime
+  }
+})
 
 const setupDvd = () => {
   preloadDvds()
