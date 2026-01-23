@@ -101,12 +101,13 @@
   
   h1 span {
     display: inline-block;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   
   h1 span.twitch {
     /* transform: scaleY(2.5); */
     color: var(--orange);
+    pointer-events: none;
   }
   
   a {
@@ -176,12 +177,16 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 10vh;
     width: auto;
     pointer-events: none;
     z-index: 100;
+    /* transition: height 0.05s; */
     /* border: 1px solid red; */
   }
+
+  #dvd.small { height: 10vh; }
+  #dvd.mid { height: 15vh; }
+  #dvd.large { height: 18vh; }
   
   .pigeon {
     position: fixed;

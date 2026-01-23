@@ -169,8 +169,11 @@ let twitchMin = 4
 let twitchRot = 45
 
 const twitchRatio = 0.25
-const twitchStagger = 60
+const twitchStagger = 30
 const twitchHold = 150
+
+let idleTimer
+const idleTime = 12000
 
 let wordSplit = t => {
   o = t
@@ -218,6 +221,37 @@ const twitchIntro = () => {
   randomSpans.forEach(span => { twitch(textSpans[span]) })
 }
 
+const twitchRollover = () => {
+  textSpans.forEach(span => {
+    span.addEventListener('mouseover', () => { twitch(span) })
+  })
+}
+
+const twitchInactive = () => {
+  let n = 0
+  textSpans.forEach(span => {
+    n += twitchStagger
+    setTimeout(() => {
+      twitch(span)
+      setTimeout(() => {
+        twitch(span)
+        setTimeout(() => {
+          twitch(span)
+        }, twitchStagger * textSpans.length)
+      }, twitchStagger * textSpans.length)
+    }, n)
+  })
+}
+
+const startIdleTimer = () => {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => { twitchInactive() }, idleTime);
+}
+
+document.addEventListener("mousemove", startIdleTimer);
+document.addEventListener("mousedown", startIdleTimer);
+document.addEventListener("keypress", startIdleTimer);
+
 const setupTwitch = () => {
   wordSplit(introTag)
   textSpans = document.querySelectorAll('.intro h1 span')
@@ -229,6 +263,8 @@ const setupTwitch = () => {
       span.addEventListener('click', () => { twitch(span) })
     }
   })
+  twitchRollover()
+  startIdleTimer()
 }
 setupTwitch()
 
@@ -236,12 +272,10 @@ setupTwitch()
 
 const dvd = document.querySelector('#dvd')
 const dvdUrls = [
-  'surf.png',
-  'shiba.png',
-  'meat.gif',
-  'digger.png',
-  'wash.png',
-  'ai_hitsquad.gif'
+  { url: 'lockup_steak.png', size: 'mid' },
+  { url: 'sign.png', size: 'large' },
+  { url: 'meat.gif', size: 'mid' },
+  { url: 'bvd.png', size: 'small' },
 ]
 
 let dvdSet = []
@@ -257,7 +291,7 @@ let lastTime = 0
 const preloadDvds = () => {
   for (let i = 0; i < dvdUrls.length; i++) {
     const img = new Image()
-    img.src = `images/${dvdUrls[i]}`
+    img.src = `images/${dvdUrls[i].url}`
     dvdSet.push(img) // Store the images
   }
 }
@@ -297,6 +331,7 @@ const nextDvd = (callback) => {
   }
   
   dvd.src = dvdSet[i].src
+  dvd.className = dvdUrls[i].size
 }
 
 const animate = (currentTime) => {
@@ -318,13 +353,13 @@ const animate = (currentTime) => {
     dirY = -1
     nextDvd(() => {
       y = screenH - dvdH  // Clamp after dimensions update
-      twitchIntro()
+      // twitchIntro()
     })
   } else if (y < 0 && dirY < 0) {
     dirY = 1
     nextDvd(() => {
       y = 0
-      twitchIntro()
+      // twitchIntro()
     })
   }
   
@@ -333,13 +368,13 @@ const animate = (currentTime) => {
     dirX = -1
     nextDvd(() => {
       x = screenW - dvdW  // Clamp after dimensions update
-      twitchIntro()
+      // twitchIntro()
     })
   } else if (x < 0 && dirX < 0) {
     dirX = 1
     nextDvd(() => {
       x = 0
-      twitchIntro()
+      // twitchIntro()
     })
   }
 
@@ -366,6 +401,7 @@ const setupDvd = () => {
   preloadDvds()
   i = Math.floor(Math.random() * dvdSet.length)
   dvd.src = dvdSet[i].src
+  dvd.className = dvdUrls[i].size
   dvd.onload = () => {
     dvd.style.opacity = 1
     setDimensions()
