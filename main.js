@@ -275,7 +275,7 @@ const dvdUrls = [
   { url: 'lockup_steak.png', size: 'mid' },
   // { url: 'sign.png', size: 'large' },
   // { url: 'meat.gif', size: 'mid' },
-  { url: 'bvd.png', size: 'small' },
+  { url: 'bvd.png', size: 'mid' },
 ]
 
 let dvdSet = []
