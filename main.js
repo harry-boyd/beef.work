@@ -109,9 +109,8 @@ let t = 0
 let blinked = false
 let blinker
 
-const launchDate = luxon.DateTime.fromISO("2026-02-16T12:00")
-// const startDate = luxon.DateTime.fromISO("2026-01-19T12:00")
-const startDate = luxon.DateTime.fromISO("2026-01-01T12:00")
+const launchDate = luxon.DateTime.fromISO("2026-03-02T12:00")
+const startDate = luxon.DateTime.fromISO("2026-01-19T12:00")
 
 const setLaunch = () => {
   // Set now
@@ -192,10 +191,6 @@ let charSplit = t => {
 const twitch = span => {
   span.classList.add('twitch')
   let x = Math.random()
-  // span.style.transform = `scaleY(${(Math.random() * (twitchMax - twitchMin)) + twitchMin}) 
-  //                         scaleX(${(Math.random() * ((twitchMax / 2) - twitchMin)) + twitchMin}) 
-  //                         skew(${(Math.random() * (twitchRot * 2)) - twitchRot}deg, ${(Math.random() * twitchRot) - (twitchRot / 2)}deg)`
-
   if (x < 0.5) {
     span.style.transform = `scaleY(${(Math.random() * (twitchMax - twitchMin)) + twitchMin})`
   } else {
@@ -273,8 +268,6 @@ setupTwitch()
 const dvd = document.querySelector('#dvd')
 const dvdUrls = [
   { url: 'lockup_steak.png', size: 'mid' },
-  // { url: 'sign.png', size: 'large' },
-  // { url: 'meat.gif', size: 'mid' },
   { url: 'bvd.png', size: 'mid' },
 ]
 
