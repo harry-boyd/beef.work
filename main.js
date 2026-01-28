@@ -481,3 +481,26 @@ pigeonButton.addEventListener('click', e => {
   
   animate();
 })
+
+// ——————————————————————————————————————————————————————————— LINKS
+
+const contactHead = document.querySelector('#contactHead')
+const buttonEmail = document.querySelector('#email')
+const buttonsSocial = document.querySelectorAll('#instagram, #linkedin')
+const buttons = document.querySelectorAll('#email, #instagram, #linkedin, #pigeon')
+
+const defaultText = '************* Get in touch *************'
+const emailText =   '*********** hello@beef.work ************'
+const pigeonText =  '*************** (✿ ♥‿♥) ****************'
+const socialText =  '************** @beef.work **************'
+
+buttonEmail.addEventListener('mouseover', () => { contactHead.innerHTML = emailText })
+pigeon.addEventListener('mouseover', () => { contactHead.innerHTML = pigeonText })
+
+buttonsSocial.forEach(button => {
+  button.addEventListener('mouseover', () => { contactHead.innerHTML = socialText })
+})
+
+buttons.forEach(button => {
+  button.addEventListener('mouseout', () => { contactHead.innerHTML = defaultText })
+})

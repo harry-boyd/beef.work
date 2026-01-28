@@ -95,7 +95,7 @@
     letter-spacing: -0.03em;
     font-size: var(--h1);
     text-align: center;
-    width: 12.5em;
+    width: 11.5em;
     line-height: 0.85em;
   }
   
@@ -203,7 +203,7 @@
   body.mobile a { font-size: 4.8vw; }
   body.mobile section#bottom .intro { height: 100%; }
   body.mobile h1 {
-    width: 95vw;
+    width: 7.5em;
     font-size: calc(2 * 5vw);
   }
   body.mobile section#bottom .contact div { padding: 0.1em; }
