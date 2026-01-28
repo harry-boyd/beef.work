@@ -266,13 +266,17 @@ setupTwitch()
 // ——————————————————————————————————————————————————————————— DVD
 
 const dvd = document.querySelector('#dvd')
+const open = document.querySelector('#open')
+
+let isOpen = false
+
 const dvdUrls = [
   { url: 'meat.png', size: 'large' },
   { url: 'bvd.png', size: 'mid' },
   { url: 'beef-worldwide.png', size: 'large' },
   { url: 'got-beef.png', size: 'mid' },
   { url: 'dr.png', size: 'large' },
-  // { url: 'open-sprite.png', size: 'mid open' },
+  { url: 'OPEN', size: '' },
 ]
 
 let dvdSet = []
@@ -320,15 +324,33 @@ const checkBounds = () => {
 const nextDvd = (callback) => {
   i += 1
   if (i >= dvdSet.length) { i = 0 }
-  
-  dvd.onload = () => {
-    dvdW = dvd.clientWidth
-    dvdH = dvd.clientHeight
-    if (callback) callback()  // Call the callback after dimensions update
+
+  if (dvdUrls[i].url === 'OPEN') {
+    // Hide img, show animated div
+    dvd.style.display = 'none'
+    open.style.display = 'block'
+    isOpen = true
+    
+    // Get dimensions from the animated div
+    dvdW = open.clientWidth
+    dvdH = open.clientHeight
+    
+    if (callback) callback()
+  } else {
+    // Hide animated div, show img
+    open.style.display = 'none'
+    dvd.style.display = 'block'
+    isOpen = false
+    
+    dvd.onload = () => {
+      dvdW = dvd.clientWidth
+      dvdH = dvd.clientHeight
+      if (callback) callback()
+    }
+    
+    dvd.src = dvdSet[i].src
+    dvd.className = dvdUrls[i].size
   }
-  
-  dvd.src = dvdSet[i].src
-  dvd.className = dvdUrls[i].size
 }
 
 const animate = (currentTime) => {
@@ -378,8 +400,13 @@ const animate = (currentTime) => {
   x += dirX * movement
   y += dirY * movement
   
-  dvd.style.left = x + 'px'
-  dvd.style.top = y + 'px'
+  if (isOpen) {
+    open.style.left = x + 'px'
+    open.style.top = y + 'px'
+  } else {
+    dvd.style.left = x + 'px'
+    dvd.style.top = y + 'px'
+  }
 
   window.requestAnimationFrame(animate)
 }
@@ -396,11 +423,11 @@ document.addEventListener('visibilitychange', () => {
 
 const setupDvd = () => {
   preloadDvds()
-  i = Math.floor(Math.random() * dvdSet.length)
+  i = Math.floor(Math.random() * (dvdSet.length - 1)) // Skip open here for ease
   dvd.src = dvdSet[i].src
   dvd.className = dvdUrls[i].size
   dvd.onload = () => {
-    dvd.style.opacity = 1
+    dvd.style.display = 'block'
     setDimensions()
     lastTime = performance.now() // Initialize lastTime
     window.requestAnimationFrame(animate)
