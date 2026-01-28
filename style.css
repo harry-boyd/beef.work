@@ -198,7 +198,7 @@
 
     height: 15vh;
     aspect-ratio: 890 / 465;
-    background: url('images/open-sprite.png') no-repeat;
+    background-repeat: no-repeat;
     background-size: 100% 400%; /* 4 frames vertically = 4 × 100% */
     animation: openSign 2s steps(4) infinite;
   }

@@ -276,7 +276,7 @@ const dvdUrls = [
   { url: 'beef-worldwide.png', size: 'large' },
   { url: 'got-beef.png', size: 'mid' },
   { url: 'dr.png', size: 'large' },
-  { url: 'OPEN', size: '' },
+  { url: 'open-sprite.png', size: '' },
 ]
 
 let dvdSet = []
@@ -294,6 +294,12 @@ const preloadDvds = () => {
     const img = new Image()
     img.src = `images/${dvdUrls[i].url}`
     dvdSet.push(img) // Store the images
+  }
+
+  openImg = new Image()
+  openImg.src = 'images/open-sprite.png'
+  openImg.onload = () => {
+    open.style.backgroundImage = `url('${openImg.src}')`
   }
 }
 
@@ -325,7 +331,7 @@ const nextDvd = (callback) => {
   i += 1
   if (i >= dvdSet.length) { i = 0 }
 
-  if (dvdUrls[i].url === 'OPEN') {
+  if (dvdUrls[i].url === 'open-sprite.png') {
     // Hide img, show animated div
     dvd.style.display = 'none'
     open.style.display = 'block'
