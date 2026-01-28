@@ -319,7 +319,6 @@ const checkBounds = () => {
 
 const nextDvd = (callback) => {
   i += 1
-  i = 5
   if (i >= dvdSet.length) { i = 0 }
   
   dvd.onload = () => {
