@@ -267,8 +267,12 @@ setupTwitch()
 
 const dvd = document.querySelector('#dvd')
 const dvdUrls = [
-  { url: 'lockup_steak.png', size: 'mid' },
+  { url: 'meat.png', size: 'large' },
   { url: 'bvd.png', size: 'mid' },
+  { url: 'beef-worldwide.png', size: 'large' },
+  { url: 'got-beef.png', size: 'mid' },
+  { url: 'dr.png', size: 'large' },
+  // { url: 'open-sprite.png', size: 'mid open' },
 ]
 
 let dvdSet = []
@@ -315,6 +319,7 @@ const checkBounds = () => {
 
 const nextDvd = (callback) => {
   i += 1
+  i = 5
   if (i >= dvdSet.length) { i = 0 }
   
   dvd.onload = () => {

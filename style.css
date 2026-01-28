@@ -187,6 +187,20 @@
   #dvd.small { height: 10vh; }
   #dvd.mid { height: 12vh; }
   #dvd.large { height: 15vh; }
+
+  #dvd.open {
+    width: 22.97vh;
+    /* aspect-ratio: 890 / 465; */
+    background: url('open-sprite.png') no-repeat;
+    background-size: 100% 400%; /* 4 frames vertically = 4 × 100% */
+    animation: openSign 1s steps(4) infinite;
+    border: 1px solid red;
+  }
+
+  @keyframes openSign {
+    from { background-position: 0% 0%; }
+    to { background-position: 0% 100%; }
+  }
   
   .pigeon {
     position: fixed;
