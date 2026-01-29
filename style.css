@@ -185,9 +185,9 @@
     /* border: 1px solid red; */
   }
 
-  #dvd.small { height: 12vh; }
-  #dvd.mid { height: 15vh; }
-  #dvd.large { height: 17vh; }
+  .small { height: 12vh; }
+  .mid { height: 15vh; }
+  .large { height: 17vh; }
 
   #open {
     position: absolute;
@@ -215,6 +215,19 @@
     height: 100px;
     pointer-events: none;
     z-index: 100;
+  }
+
+  img.inactive {
+    position: fixed;
+    width: auto;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 500ms step-end;
+  }
+
+  img.inactive.fadeOut {
+    opacity: 0;
   }
   
   /* ———————————————————————————————————————————————————————————————————————————————————————————————————— */

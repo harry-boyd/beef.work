@@ -268,6 +268,9 @@ setupTwitch()
 const dvd = document.querySelector('#dvd')
 const open = document.querySelector('#open')
 
+let animationId = null
+let isRunning = false 
+
 let isOpen = false
 
 const dvdUrls = [
@@ -312,7 +315,6 @@ const setDimensions = () => {
   dvdH = dvd.clientHeight
   screenW = document.body.clientWidth
   screenH = document.body.clientHeight
-  console.log(`screenW = ${screenW} | screenH = ${screenH}`)
 }
 
 const resetDvd = () => {
@@ -419,7 +421,7 @@ const animate = (currentTime) => {
     dvd.style.top = y + 'px'
   }
 
-  window.requestAnimationFrame(animate)
+  animationId = window.requestAnimationFrame(animate)
 }
 
 // Listen for tab visibility changes
@@ -452,6 +454,22 @@ const setupDvd = () => {
 }
 
 setupDvd()
+
+const stopDvd = () => {
+  if (animationId) {
+    window.cancelAnimationFrame(animationId)
+    animationId = null
+    isRunning = false
+  }
+}
+
+const startDvd = () => {
+  if (!isRunning) {
+    isRunning = true
+    lastTime = performance.now()
+    animationId = window.requestAnimationFrame(animate)
+  }
+}
 
 // ——————————————————————————————————————————————————————————— PIGEON
 
@@ -552,3 +570,86 @@ buttonsSocial.forEach(button => {
 buttons.forEach(button => {
   button.addEventListener('mouseout', () => { contactHead.innerHTML = defaultText })
 })
+
+// ——————————————————————————————————————————————————————————— INACTIVITY
+
+const inactivityDelay = 30000;
+const imageSpawnDelay = 5000;
+const resetDelay = 100;
+const resetStagger = 50;
+
+let inactivityTimer = null;
+let imageSpawnTimer = null;
+let isInactive = false;
+const spawnedImages = [];
+
+const resetInactivityTimer = () => {
+  // Clear existing timers
+  clearTimeout(inactivityTimer);
+  clearInterval(imageSpawnTimer);
+  
+  // If we were inactive and user moved, clean up images
+  if (isInactive) {
+    isInactive = false;
+    setTimeout(() => {
+      spawnedImages.forEach((img, index) => {
+        img.style.transitionDelay = `${index * resetStagger}ms`;
+        img.classList.add('fadeOut');
+      });
+      
+      // Remove all images after the last one has faded
+      const totalFadeTime = spawnedImages.length * resetStagger + 500; // 500ms for the fade transition itself
+      setTimeout(() => {
+        spawnedImages.forEach(img => img.remove());
+        spawnedImages.length = 0;
+        startDvd();
+      }, totalFadeTime);
+    }, resetDelay);
+  }
+  
+  // Start new inactivity timer
+  inactivityTimer = setTimeout(() => {
+    isInactive = true;
+    stopDvd()
+    startImageSpawning();
+  }, inactivityDelay);
+}
+
+const startImageSpawning = () => {
+  // Spawn first image immediately
+  spawnRandomImage();
+  
+  // Then spawn new images at regular intervals
+  imageSpawnTimer = setInterval(() => {
+    spawnRandomImage();
+  }, imageSpawnDelay);
+}
+
+const spawnRandomImage = () => {
+  if (!dvdSet || dvdSet.length === 0) return;
+  
+  // Pick random image from dvdSet
+  let i = Math.floor(Math.random() * dvdSet.length)
+  if (dvdUrls[i].url === 'open-sprite.png') {
+    i = (Math.random() > 0.5) ? i + 1 : i - 1;
+    if (i < 0) i = dvdSet.length - 1;
+    if (i >= dvdSet.length) i = 0;
+  }
+
+  // Clone the preloaded image
+  const img = dvdSet[i].cloneNode(true);
+  img.className = 'inactive ' + dvdUrls[i].size;
+  img.style.left = (Math.random() * window.innerWidth) - (window.innerWidth * 0.1) + 'px';
+  img.style.top = (Math.random() * window.innerHeight) - (window.innerHeight * 0.1) + 'px';
+
+  document.body.appendChild(img);
+  spawnedImages.push(img);
+}
+
+// Listen for user activity
+['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
+  document.addEventListener(event, resetInactivityTimer);
+});
+
+// Start the initial timer
+resetInactivityTimer();
