@@ -575,7 +575,7 @@ buttons.forEach(button => {
 
 // ——————————————————————————————————————————————————————————— INACTIVITY
 
-const inactivityDelay = 60000;
+const inactivityDelay = 120000;
 const imageSpawnDelay = 10000;
 const resetDelay = 100;
 const resetStagger = 30;
