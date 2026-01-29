@@ -185,9 +185,9 @@
     /* border: 1px solid red; */
   }
 
-  #dvd.small { height: 10vh; }
-  #dvd.mid { height: 12vh; }
-  #dvd.large { height: 15vh; }
+  #dvd.small { height: 12vh; }
+  #dvd.mid { height: 15vh; }
+  #dvd.large { height: 17vh; }
 
   #open {
     position: absolute;

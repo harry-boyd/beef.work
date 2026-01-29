@@ -271,12 +271,16 @@ const open = document.querySelector('#open')
 let isOpen = false
 
 const dvdUrls = [
-  { url: 'meat.png', size: 'large' },
-  { url: 'bvd.png', size: 'mid' },
-  { url: 'beef-worldwide.png', size: 'large' },
-  { url: 'got-beef.png', size: 'mid' },
-  { url: 'dr.png', size: 'large' },
+  { url: 'beef-steak.png', size: 'mid' },
+  { url: 'beef-dvd-pink.png', size: 'small' },
+  { url: 'beef-earth.png', size: 'mid' },
   { url: 'open-sprite.png', size: '' },
+  { url: 'beef-gummy.png', size: 'mid' },
+  { url: 'beef-dvd-green.png', size: 'small' },
+  { url: 'beef-gotbeef.png', size: 'small' },
+  { url: 'beef-toast.png', size: 'mid' },
+  { url: 'beef-snake.png', size: 'large' },
+  { url: 'beef-dvd-blue.png', size: 'small' },
 ]
 
 let dvdSet = []
@@ -308,6 +312,7 @@ const setDimensions = () => {
   dvdH = dvd.clientHeight
   screenW = document.body.clientWidth
   screenH = document.body.clientHeight
+  console.log(`screenW = ${screenW} | screenH = ${screenH}`)
 }
 
 const resetDvd = () => {
@@ -427,7 +432,7 @@ document.addEventListener('visibilitychange', () => {
   }
 })
 
-document.addEventListener('resize', () => {
+window.addEventListener('resize', () => {
   setDimensions()  // Update viewport dimensions in case window was resized
   checkBounds()    // Check and reset if out of bounds
   lastTime = performance.now()  // Reset time to prevent huge deltaTime
