@@ -96,8 +96,10 @@
     letter-spacing: -0.03em;
     font-size: var(--h1);
     text-align: center;
-    width: 11.5em;
+    /* width: 11.5em; */
+    width: 19em;
     line-height: 0.85em;
+    /* border: 1px solid red; */
   }
   
   h1 span {

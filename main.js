@@ -161,7 +161,7 @@ setLaunch()
 
 // ——————————————————————————————————————————————————————————— TWITCH
 
-const introTag = document.querySelector('.intro h1')
+const introTags = document.querySelectorAll('.intro h1')
 let textSpans, textAmount
 let twitchMax = 10
 let twitchMin = 4
@@ -243,12 +243,14 @@ const startIdleTimer = () => {
   idleTimer = setTimeout(() => { twitchInactive() }, idleTime);
 }
 
-document.addEventListener("mousemove", startIdleTimer);
-document.addEventListener("mousedown", startIdleTimer);
-document.addEventListener("keypress", startIdleTimer);
+// document.addEventListener("mousemove", startIdleTimer);
+// document.addEventListener("mousedown", startIdleTimer);
+// document.addEventListener("keypress", startIdleTimer);
 
 const setupTwitch = () => {
-  wordSplit(introTag)
+  introTags.forEach(h1 => {
+    wordSplit(h1)
+  })
   textSpans = document.querySelectorAll('.intro h1 span')
   textAmount = textSpans.length
   textSpans.forEach(span => {
@@ -259,7 +261,7 @@ const setupTwitch = () => {
     }
   })
   twitchRollover()
-  startIdleTimer()
+  // startIdleTimer()
 }
 setupTwitch()
 
@@ -573,10 +575,10 @@ buttons.forEach(button => {
 
 // ——————————————————————————————————————————————————————————— INACTIVITY
 
-const inactivityDelay = 30000;
-const imageSpawnDelay = 5000;
+const inactivityDelay = 60000;
+const imageSpawnDelay = 10000;
 const resetDelay = 100;
-const resetStagger = 50;
+const resetStagger = 30;
 
 let inactivityTimer = null;
 let imageSpawnTimer = null;
