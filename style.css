@@ -3,12 +3,13 @@
 
 @font-face {
     font-family: 'Tobias';
-    src: url(fonts/TobiasTRIAL-SemiBold.otf);
+    src: url('fonts/Tobias-SemiBold.woff2') format('woff2'),
+         url('fonts/Tobias-SemiBold.woff') format('woff');
   }
   
   @font-face {
     font-family: 'Neue Haas';
-    src: url(fonts/NHaasGroteskDSPro-75Bd.ttf);
+    src: url(fonts/NeueHaasGroteskDisplay-75Bold-Web.woff2);
   }
   
   @font-face {

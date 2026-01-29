@@ -427,6 +427,12 @@ document.addEventListener('visibilitychange', () => {
   }
 })
 
+document.addEventListener('resize', () => {
+  setDimensions()  // Update viewport dimensions in case window was resized
+  checkBounds()    // Check and reset if out of bounds
+  lastTime = performance.now()  // Reset time to prevent huge deltaTime
+})
+
 const setupDvd = () => {
   preloadDvds()
   i = Math.floor(Math.random() * (dvdSet.length - 1)) // Skip open here for ease
