@@ -637,7 +637,8 @@ const spawnRandomImage = () => {
   }
 
   // Clone the preloaded image
-  const img = dvdSet[i].cloneNode(true);
+  const img = document.createElement('img');
+  img.src = dvdSet[i].src;
   img.className = 'inactive ' + dvdUrls[i].size;
   img.style.left = (Math.random() * window.innerWidth) - (window.innerWidth * 0.1) + 'px';
   img.style.top = (Math.random() * window.innerHeight) - (window.innerHeight * 0.1) + 'px';
