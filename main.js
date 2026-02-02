@@ -476,11 +476,15 @@ const startDvd = () => {
 // ——————————————————————————————————————————————————————————— PIGEON
 
 const pigeonButton = document.querySelector('#pigeon')
+const preloadedFah = new Audio('misc/fah.mp3');
 
 const pigeonImg = new Image()
 pigeonImg.src = 'images/pigeon.gif'
 
 pigeonButton.addEventListener('click', e => {
+  const fah = preloadedFah.cloneNode();
+  fah.play();
+
   // Create image
   const img = document.createElement('img')
   img.className = 'pigeon'
