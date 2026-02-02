@@ -74,7 +74,7 @@ const headerTicker = () => {
   headerTag.innerHTML = headerText.substring(n, 40 + n)
 }
 
-// window.setInterval(headerTicker, 800)
+window.setInterval(headerTicker, 800)
 
 // ——————————————————————————————————————————————————————————— TIME
 
