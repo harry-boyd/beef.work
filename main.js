@@ -74,7 +74,7 @@ const headerTicker = () => {
   headerTag.innerHTML = headerText.substring(n, 40 + n)
 }
 
-// window.setInterval(headerTicker, 800)
+window.setInterval(headerTicker, 800)
 
 // ——————————————————————————————————————————————————————————— TIME
 
@@ -568,7 +568,7 @@ const socialText =  '************** @beef.work **************'
 
 if (!isMobile) {
   buttonEmail.addEventListener('mouseover', () => { contactHead.innerHTML = emailText })
-  pigeon.addEventListener('mouseover', () => { contactHead.innerHTML = pigeonText })
+  pigeonButton.addEventListener('mouseover', () => { contactHead.innerHTML = pigeonText })
 
   buttonsSocial.forEach(button => {
     button.addEventListener('mouseover', () => { contactHead.innerHTML = socialText })
