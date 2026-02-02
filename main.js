@@ -74,7 +74,7 @@ const headerTicker = () => {
   headerTag.innerHTML = headerText.substring(n, 40 + n)
 }
 
-window.setInterval(headerTicker, 800)
+// window.setInterval(headerTicker, 800)
 
 // ——————————————————————————————————————————————————————————— TIME
 
@@ -482,8 +482,8 @@ const pigeonImg = new Image()
 pigeonImg.src = 'images/pigeon.gif'
 
 pigeonButton.addEventListener('click', e => {
-  const fah = preloadedFah.cloneNode();
-  fah.play();
+  // const fah = preloadedFah.cloneNode();
+  // fah.play();
 
   // Create image
   const img = document.createElement('img')
@@ -566,16 +566,18 @@ const emailText =   '*********** hello@beef.work ************'
 const pigeonText =  '*************** (✿ ♥‿♥) ****************'
 const socialText =  '************** @beef.work **************'
 
-buttonEmail.addEventListener('mouseover', () => { contactHead.innerHTML = emailText })
-pigeon.addEventListener('mouseover', () => { contactHead.innerHTML = pigeonText })
+if (!isMobile) {
+  buttonEmail.addEventListener('mouseover', () => { contactHead.innerHTML = emailText })
+  pigeon.addEventListener('mouseover', () => { contactHead.innerHTML = pigeonText })
 
-buttonsSocial.forEach(button => {
-  button.addEventListener('mouseover', () => { contactHead.innerHTML = socialText })
-})
+  buttonsSocial.forEach(button => {
+    button.addEventListener('mouseover', () => { contactHead.innerHTML = socialText })
+  })
 
-buttons.forEach(button => {
-  button.addEventListener('mouseout', () => { contactHead.innerHTML = defaultText })
-})
+  buttons.forEach(button => {
+    button.addEventListener('mouseout', () => { contactHead.innerHTML = defaultText })
+  })
+}
 
 // ——————————————————————————————————————————————————————————— INACTIVITY
 
