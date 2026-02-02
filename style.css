@@ -87,6 +87,7 @@
     font-size: var(--p);
     letter-spacing: -0.03em;
     line-height: 1.05em;
+    white-space: pre;
   
     text-size-adjust: none;
     -webkit-text-size-adjust: none;
