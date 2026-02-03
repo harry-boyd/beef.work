@@ -275,17 +275,28 @@ let isRunning = false
 
 let isOpen = false
 
+// const dvdUrls = [
+//   { url: 'beef-steak.png', size: 'mid' },
+//   { url: 'beef-dvd-pink.png', size: 'small' },
+//   { url: 'beef-earth.png', size: 'mid' },
+//   { url: 'open-sprite.png', size: '' },
+//   { url: 'beef-gummy.png', size: 'mid' },
+//   { url: 'beef-dvd-green.png', size: 'small' },
+//   { url: 'beef-gotbeef.png', size: 'small' },
+//   { url: 'beef-toast.png', size: 'mid' },
+//   { url: 'beef-snake.png', size: 'large' },
+//   { url: 'beef-dvd-blue.png', size: 'small' },
+// ]
+
 const dvdUrls = [
   { url: 'beef-steak.png', size: 'mid' },
   { url: 'beef-dvd-pink.png', size: 'small' },
-  { url: 'beef-earth.png', size: 'mid' },
-  { url: 'open-sprite.png', size: '' },
-  { url: 'beef-gummy.png', size: 'mid' },
-  { url: 'beef-dvd-green.png', size: 'small' },
   { url: 'beef-gotbeef.png', size: 'small' },
-  { url: 'beef-toast.png', size: 'mid' },
-  { url: 'beef-snake.png', size: 'large' },
+  { url: 'beef-dvd-green.png', size: 'small' },
+  { url: 'beef-steak.png', size: 'mid' },
   { url: 'beef-dvd-blue.png', size: 'small' },
+  { url: 'beef-gotbeef.png', size: 'small' },
+  { url: 'beef-dvd-orange.png', size: 'small' },
 ]
 
 let dvdSet = []
@@ -482,8 +493,8 @@ const pigeonImg = new Image()
 pigeonImg.src = 'images/pigeon.gif'
 
 pigeonButton.addEventListener('click', e => {
-  const fah = preloadedFah.cloneNode();
-  fah.play();
+  // const fah = preloadedFah.cloneNode();
+  // fah.play();
 
   // Create image
   const img = document.createElement('img')
@@ -656,9 +667,9 @@ const spawnRandomImage = () => {
 }
 
 // Listen for user activity
-['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
-  document.addEventListener(event, resetInactivityTimer);
-});
+// ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
+//   document.addEventListener(event, resetInactivityTimer);
+// });
 
 // Start the initial timer
-resetInactivityTimer();
+// resetInactivityTimer();
