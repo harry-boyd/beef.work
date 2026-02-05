@@ -646,6 +646,12 @@ const startImageSpawning = () => {
 
 const spawnRandomImage = () => {
   if (!dvdSet || dvdSet.length === 0) return;
+
+  // Stop spawning if we've reached 100 images
+  if (spawnedImages.length >= 100) {
+    clearInterval(imageSpawnTimer);
+    return;
+  }
   
   // Pick random image from dvdSet
   let i = Math.floor(Math.random() * dvdSet.length)
@@ -667,9 +673,9 @@ const spawnRandomImage = () => {
 }
 
 // Listen for user activity
-// ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
-//   document.addEventListener(event, resetInactivityTimer);
-// });
+['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
+  document.addEventListener(event, resetInactivityTimer);
+});
 
 // Start the initial timer
-// resetInactivityTimer();
+resetInactivityTimer();
