@@ -493,8 +493,8 @@ const pigeonImg = new Image()
 pigeonImg.src = 'images/pigeon.gif'
 
 pigeonButton.addEventListener('click', e => {
-  // const fah = preloadedFah.cloneNode();
-  // fah.play();
+  const fah = preloadedFah.cloneNode();
+  fah.play();
 
   // Create image
   const img = document.createElement('img')
