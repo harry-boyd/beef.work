@@ -109,7 +109,7 @@ let t = 0
 let blinked = false
 let blinker
 
-const launchDate = luxon.DateTime.fromISO("2026-03-02T12:00")
+const launchDate = luxon.DateTime.fromISO("2026-04-06T12:00")
 const startDate = luxon.DateTime.fromISO("2026-01-19T12:00")
 
 const setLaunch = () => {
@@ -117,7 +117,7 @@ const setLaunch = () => {
   let now = luxon.DateTime.now().setZone('Europe/London')
 
   // Set days from launch
-  let d = Math.round(launchDate.diff(startDate, 'days').values.days)
+  let d = Math.round(launchDate.diff(now, 'days').values.days)
   if (d < 10) {
     launchDays.innerHTML = `0${d}`
   } else {
