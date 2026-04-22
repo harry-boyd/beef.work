@@ -109,7 +109,7 @@ let t = 0
 let blinked = false
 let blinker
 
-const launchDate = luxon.DateTime.fromISO("2026-06-11T12:00")
+const launchDate = luxon.DateTime.fromISO("2026-06-12T12:00")
 const startDate = luxon.DateTime.fromISO("2026-01-19T12:00")
 
 const setLaunch = () => {
